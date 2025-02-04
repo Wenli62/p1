@@ -1,0 +1,55 @@
+#version: "3"
+services:
+  vote:
+    build: ./vote
+    command: python app.py
+    volumes:
+     - vote_data:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - front-tier
+      - back-tier
+    depends_on:
+      - mysql_db
+
+
+  mysql_db:
+    image: mysql
+    # container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: zxcvbnm
+      MYSQL_DATABASE: db_vote
+    ports:
+      - 3311:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - back-tier
+
+  storage:
+    build: ./storage
+    depends_on:
+      - mysql_db
+    #command: sh -c "wait-for-it mysql_db:3306 -- python db_manage.py drop && python app.py"
+    command: python app.py
+    environment:
+      MYSQL_ROOT_PASSWORD: zxcvbnm
+      MYSQL_DATABASE: db_vote
+    ports:
+      - "5010:5010"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - back-tier
+
+  
+
+  
+networks:
+  front-tier:
+  back-tier:
+
+volumes:
+  vote_data:
+  mysql_data:

@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 3495project1
+  description: ''
+paths:
+  /vote:
+    get:
+      summary: Retrieve vote options
+      operationId: app.get_vote
+      responses:
+        200:
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Cast a vote
+      operationId: app.post_vote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vote'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    vote:
+      type: object
+      required:
+        # - id
+        - user_input
+        # - vote_time
+      properties:
+        id:
+          type: string
+          example: '123'
+        user_input:
+          type: string
+          enum:
+            - 'Cats'
+            - 'Dogs'
+          example: 'Cats'
+        vote_time:
+          type: string
+          format: date-time
+          example: '2025-01-08T09:12:33.001Z'

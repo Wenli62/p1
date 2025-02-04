@@ -1,0 +1,8 @@
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: zxcvbnm
+      MYSQL_DATABASE: db_vote
+    ports:
+      - 3311:3306

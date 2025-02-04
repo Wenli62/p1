@@ -1,0 +1,6 @@
+connexion[flask]
+connexion[uvicorn]
+PyYAML
+SQLAlchemy
+mysqlclient
+gunicorn

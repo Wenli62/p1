@@ -1,0 +1,6 @@
+Flask
+connexion[flask]
+connexion[uvicorn]
+httpx
+PyYAML
+gunicorn
