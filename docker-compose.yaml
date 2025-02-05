@@ -17,6 +17,11 @@ services:
   mysql_db:
     image: mysql
     # container_name: mysql_db
+    # Health check for mysql database, whether mysqladmin is pingable and whether root can login.
+    healthcheck:
+      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      timeout: 10s
+      retries: 1
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
       MYSQL_DATABASE: db_vote
@@ -30,9 +35,11 @@ services:
   storage:
     build: ./storage
     depends_on:
-      - mysql_db
-    #command: sh -c "wait-for-it mysql_db:3306 -- python db_manage.py drop && python app.py"
-    command: python app.py
+      mysql_db:
+        condition: service_healthy
+    # command: sh -c "wait-for-it mysql_db:3306 -- python db_manage.py drop && python app.py"
+    # command: python app.py
+    command: sh -c 'python db_manage.py drop && python app.py'
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
       MYSQL_DATABASE: db_vote
@@ -43,9 +50,7 @@ services:
     networks:
       - back-tier
 
-  
 
-  
 networks:
   front-tier:
   back-tier:
