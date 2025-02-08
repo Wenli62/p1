@@ -4,7 +4,7 @@ import logging.config
 import yaml
 import functools
 from db import make_session
-from models import voteReport
+from models import gradeReport
 import yaml
 import logging, logging.config
 
@@ -45,8 +45,8 @@ def use_db_session(func):
     return wrapper
 
 @use_db_session
-def post_vote(session, body):
-    event = voteReport(**body)
+def post_grade(session, body):
+    event = gradeReport(**body)
     return event
 
 if __name__ == "__main__":

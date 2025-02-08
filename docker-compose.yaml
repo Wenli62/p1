@@ -1,10 +1,10 @@
 #version: "3"
 services:
-  vote:
-    build: ./vote
+  grade:
+    build: ./grade
     command: python app.py
     volumes:
-     - vote_data:/app
+     - grade_data:/app
     ports:
       - "5000:5000"
     networks:
@@ -19,7 +19,7 @@ services:
     # container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_vote
+      MYSQL_DATABASE: db_grade
     ports:
       - 3311:3306
     volumes:
@@ -41,7 +41,7 @@ services:
     command: sh -c "python db_manage.py drop && exec python app.py"
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_vote
+      MYSQL_DATABASE: db_grade
     ports:
       - "5010:5010"
     volumes:
@@ -57,5 +57,5 @@ networks:
   back-tier:
 
 volumes:
-  vote_data:
+  grade_data:
   mysql_data:

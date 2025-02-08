@@ -1,0 +1,87 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #F1F6F9; /* Light neutral background for a soft feel */
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #A7B0BC; /* Softer border color */
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #FFFFFF; /* Clean white background */
+}
+
+button {
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: #3A8DFF; /* A calming blue tone */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2875D0; /* Slightly darker blue for hover effect */
+}
+
+#tip {
+  text-align: left;
+  color: #A0B1C2; /* Soft gray for tip text */
+  font-size: 14px;
+}
+
+#content-container {
+  z-index: 2;
+  position: relative;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  max-width: 450px;
+  height: 100%;
+}
+
+#content-container-center {
+  display: table-cell;
+  text-align: center;
+}
+
+#content-container-center h3 {
+  color: #254356; /* A deep, professional blue tone */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: #3A4C61; /* Soft dark gray for labels */
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+select, input {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+#content-container-center select, #content-container-center input {
+  width: 100%;
+}
+
+#content-container-center button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+}

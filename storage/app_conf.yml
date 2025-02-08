@@ -5,4 +5,4 @@ datastore:
   hostname: mysql_db
   # hostname: localhost
   port: 3306
-  db: db_vote
+  db: db_grade

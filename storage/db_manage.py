@@ -1,14 +1,14 @@
 import sys
 from db import engine
-from models import voteReport
+from models import gradeReport
 
 def create_tables():
     
-    voteReport.metadata.create_all(engine)
+    gradeReport.metadata.create_all(engine)
 
 def drop_tables():
     
-    voteReport.metadata.drop_all(engine)
+    gradeReport.metadata.drop_all(engine)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "drop":

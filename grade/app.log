@@ -107,3 +107,11 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
   "id": "8947",
   "vote_time": "2025-02-03T17:50:04.504599+00:00"
 }
+2025-02-07 22:32:51,726 - basicLogger - INFO - Grade received on 2025-02-08T06:32:51.726095+00:00
+2025-02-07 22:32:55,646 - basicLogger - INFO - Grade received on 2025-02-08T06:32:55.646077+00:00
+2025-02-07 22:32:57,384 - basicLogger - INFO - Grade received on 2025-02-08T06:32:57.384636+00:00
+2025-02-07 22:32:57,585 - basicLogger - INFO - Grade received on 2025-02-08T06:32:57.585447+00:00
+2025-02-07 22:32:57,724 - basicLogger - INFO - Grade received on 2025-02-08T06:32:57.724435+00:00
+2025-02-07 22:36:13,738 - basicLogger - INFO - Grade received on 2025-02-08T06:36:13.738617+00:00
+2025-02-07 22:40:29,797 - basicLogger - INFO - Grade received on 2025-02-08T06:40:29.797315+00:00
+2025-02-07 22:43:55,984 - basicLogger - INFO - Grade received on 2025-02-08T06:43:55.984687+00:00

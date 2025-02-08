@@ -1,0 +1,3 @@
+version: 1
+submit_grade:
+  url: http://storage:5010/submit_grade

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Student Grades Submission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="student, grades, submission">
+    <meta name="author" content="Tutum dev team">
+    <link rel='stylesheet' href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+  </head>
+  <body>
+    <div id="content-container">
+      <div id="content-container-center">
+        <h3>Submit Your Grade</h3>
+        
+        <!-- Student ID Dropdown -->
+        <label for="student_id">Select Student ID:</label>
+        <select id="student_id" name="student_id">
+          <option value="1001">1001</option>
+          <option value="1002">1002</option>
+          <option value="1003">1003</option>
+          <option value="1004">1004</option>
+          <option value="1005">1005</option>
+          <option value="1006">1006</option>
+          <option value="1007">1007</option>
+          <option value="1008">1008</option>
+          <option value="1009">1009</option>
+          <option value="1010">1010</option>
+        </select>
+        
+        <!-- Subject Selection -->
+        <label for="subject">Select Subject:</label>
+        <select id="subject" name="subject">
+          <option value="Mathematics">Mathematics</option>
+          <option value="Physics">Physics</option>
+          <option value="Chemistry">Chemistry</option>
+          <option value="Biology">Biology</option>
+          <option value="History">History</option>
+          <option value="Geography">Geography</option>
+          <option value="English">English</option>
+          <option value="Computer Science">Computer Science</option>
+        </select>
+        
+        <!-- Grade Input -->
+        <label for="grade">Enter Grade:</label>
+        <input type="number" id="grade" name="grade" min="0" max="100" step="1" required>
+        
+        <button id="submit" type="button" class="submit" onclick="submitGrade()">Submit</button>
+        <div id="tip">(Tip: Ensure the grade is a numeric integer value between 0 and 100)</div>
+      </div>
+    </div>
+
+    <script>
+      async function submitGrade() {
+        const studentId = document.getElementById("student_id").value;
+        const subject = document.getElementById("subject").value;
+        const grade = parseInt(document.getElementById("grade").value, 10);
+
+        if (!grade || grade < 0 || grade > 100) {
+          alert("Please enter a valid grade between 0 and 100.");
+          return;
+        }
+
+        const gradeData = { student_id: studentId, subject: subject, grade: grade };
+
+        try {
+          const response = await fetch('/submit_grade', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(gradeData),
+          });
+
+          const result = await response.json();
+          alert("Grade successfully submitted!");
+        } catch (error) {
+          console.error("Error submitting grade:", error);
+          alert("Failed to submit grade.");
+        }
+      }
+    </script>
+  </body>
+</html>
