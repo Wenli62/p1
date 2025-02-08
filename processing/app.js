@@ -19,10 +19,10 @@ const analyze = async () => {
     const numCats = rows.filter((entry) => entry.user_input === "Cats").length;
     const numRows = rows.length
 
-    const stats = [ {"numDogs": numDogs, "numCats": numCats, "numVotes": numRows }]
+    const stats = [ {"id": 1, "numDogs": numDogs, "numCats": numCats, "numVotes": numRows }]
 
     // output to mongodb
-    Stats.overwrite(stats)
+    Stats.findOneAndReplace({ id: 1 }, stats);
     await Stats.save();
 
     mongoose.connection.close()

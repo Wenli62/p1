@@ -38,11 +38,12 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: zxcvbnm
-
+      MONGO_INITDB_DATABASE: db_stats
     ports:
       - 27011:27017
     volumes:
       - mongo_data:/data/db
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - back-tier
 

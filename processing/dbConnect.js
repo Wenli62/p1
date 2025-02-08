@@ -19,11 +19,11 @@ const sqlConnection = mysql.createPool({
 
 mongoose.set("strictQuery", false);
 
-const username = "db_user"
+const username = "root"
 const password = "zxcvbnm"
 const host = "localhost"
-const port = 12345
-const database = "db_vote"
+const port = 27011
+const database = "db_stats"
 
 export const mongoConnection = async () => {
     await mongoose.connect(`mongodb://${username}:${password}@${host}:${port}}/${database}`)
