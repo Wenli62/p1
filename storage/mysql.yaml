@@ -18,6 +18,8 @@ paths:
     post:
       summary: submit a grade
       operationId: app.post_grade
+      # security:
+      #   - bearerAuth: []
       requestBody:
         content:
           application/json:
@@ -28,7 +30,14 @@ paths:
           description: Created
         '400':
           description: Bad Request
+        # '401':
+        #   description: Unauthorized - Invalid or missing token
 components:
+  # securitySchemes:
+  #     bearerAuth:
+  #       type: http
+  #       scheme: bearer
+  #       bearerFormat: JWT
   schemas:
     submit_grade:
       type: object

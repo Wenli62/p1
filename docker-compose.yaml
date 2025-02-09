@@ -1,12 +1,21 @@
 #version: "3"
 services:
+  auth:
+    build: ./auth
+    command: python app.py
+    # volumes:
+    #  - grade_data:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - front-tier
   grade:
     build: ./grade
     command: python app.py
     volumes:
      - grade_data:/app
     ports:
-      - "5000:5000"
+      - "5010:5010"
     networks:
       - front-tier
       - back-tier
@@ -43,7 +52,7 @@ services:
       MYSQL_ROOT_PASSWORD: zxcvbnm
       MYSQL_DATABASE: db_grade
     ports:
-      - "5010:5010"
+      - "5020:5020"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:

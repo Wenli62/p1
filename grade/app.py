@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-import random
-import json
 import httpx
-import os
-import socket
 import logging.config
 import yaml
 from datetime import datetime, timezone
+import jwt
 
 # Load configuration safely
 def load_yaml(file, default={}):
@@ -27,15 +24,34 @@ logger = logging.getLogger('basicLogger')
 # Flask app setup
 app = Flask(__name__)
 
-# Environment variables (default: Cats vs. Dogs)
-# option_a = os.getenv('OPTION_A', "Cats")
-# option_b = os.getenv('OPTION_B', "Dogs")
-#hostname = socket.gethostname()
+SECRET_KEY = "3495project1"  # Secret key to validate JWT tokens
+
+# Function to decode and validate the JWT token
+def validate_token(token):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return payload
+    except jwt.ExpiredSignatureError:
+        logger.error("Token has expired")
+        return None
+    except jwt.InvalidTokenError:
+        logger.error("Invalid token")
+        return None
 
 @app.route("/submit_grade", methods=["GET", "POST"])
 def submit_grade():
     if request.method == "GET":
         return render_template('index.html')
+    
+    # # Check if token is provided
+    # token = request.args.get("token")
+    # if token is None:
+    #     return jsonify({"message": "Missing token"}), 401
+    
+    # # Validate the token
+    # token_data = validate_token(token)
+    # if token_data is None:
+    #     return jsonify({"message": "Invalid or expired token"}), 401
 
     data = request.get_json()
     required_fields = ['student_id', 'subject', 'grade']
@@ -47,10 +63,14 @@ def submit_grade():
     logger.info(f"Grade received on {data['receive_time']}")
 
     url = app_config['submit_grade']['url']
-    headers = {"Content-Type": "application/json"}
+    headers = {
+        "Content-Type": "application/json"
+    }
     
     try:
         httpx.post(url, json=data, headers=headers).raise_for_status()
+        logger.info(f"Sending request to {url} with headers: {headers}")
+
     except Exception as e:
         logger.error(f"Error forwarding grade: {str(e)}")
         return jsonify({"message": "Internal Server Error"}), 500
@@ -59,4 +79,4 @@ def submit_grade():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5010)

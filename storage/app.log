@@ -1,0 +1,12 @@
+2025-02-08 13:15:43,195 - basicLogger - INFO - Received headers: Headers({'host': 'localhost:5020', 'accept': '*/*', 'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'user-agent': 'python-httpx/0.28.1', 'content-type': 'application/json', 'content-length': '106'})
+2025-02-08 13:18:13,932 - basicLogger - INFO - Received body: <bound method ConnexionRequest.json of <connexion.lifecycle.ConnexionRequest object at 0x000001BA86DE2B10>>
+2025-02-08 13:19:50,162 - basicLogger - INFO - Received body: {'student_id': '1001', 'subject': 'Mathematics', 'grade': 12, 'receive_time': '2025-02-08T21:19:48.099850+00:00'}
+2025-02-08 13:22:02,032 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x0000025B20D02850>
+2025-02-08 13:23:06,635 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x000002BD54A6BF10>
+2025-02-08 13:23:17,269 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x000002BD54C24ED0>
+2025-02-08 13:24:09,362 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x000002863624C1D0>
+2025-02-08 13:24:17,930 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x0000028636110F90>
+2025-02-08 13:24:53,280 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x00000172ED0DE190>
+2025-02-08 13:28:02,341 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x0000029C80936F90>
+2025-02-08 13:30:05,705 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x000001E1185ED090>
+2025-02-08 13:31:03,295 - basicLogger - INFO - Stored event: <models.gradeReport object at 0x0000025FA8D70D90>
