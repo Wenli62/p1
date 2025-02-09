@@ -1,12 +1,21 @@
 #version: "3"
 services:
-  vote:
-    build: ./vote
+  auth:
+    build: ./auth
     command: python app.py
-    volumes:
-     - vote_data:/app
+    # volumes:
+    #  - grade_data:/app
     ports:
       - "5000:5000"
+    networks:
+      - front-tier
+  grade:
+    build: ./grade
+    command: python app.py
+    volumes:
+     - grade_data:/app
+    ports:
+      - "5010:5010"
     networks:
       - front-tier
       - back-tier
@@ -24,13 +33,19 @@ services:
       retries: 1
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_vote
+      MYSQL_DATABASE: db_grade
     ports:
       - 3311:3306
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - back-tier
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 
   mongo_db:
@@ -51,15 +66,18 @@ services:
     build: ./storage
     depends_on:
       mysql_db:
+        condition: service_healthy 
+    command: sh -c "python db_manage.py drop && exec python app.py"
+      mysql_db:
         condition: service_healthy
     # command: sh -c "wait-for-it mysql_db:3306 -- python db_manage.py drop && python app.py"
     # command: python app.py
     command: sh -c 'python db_manage.py drop && python app.py'
     environment:
       MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_vote
+      MYSQL_DATABASE: db_grade
     ports:
-      - "5010:5010"
+      - "5020:5020"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
@@ -71,6 +89,6 @@ networks:
   back-tier:
 
 volumes:
-  vote_data:
+  grade_data:
   mysql_data:
   mongo_data:

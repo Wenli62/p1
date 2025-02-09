@@ -1,0 +1,43 @@
+2025-02-08 13:13:34,177 - basicLogger - INFO - Grade received on 2025-02-08T21:13:34.177567+00:00
+2025-02-08 13:13:35,621 - basicLogger - INFO - Grade received on 2025-02-08T21:13:35.620586+00:00
+2025-02-08 13:13:36,106 - basicLogger - INFO - Grade received on 2025-02-08T21:13:36.106334+00:00
+2025-02-08 13:13:36,389 - basicLogger - ERROR - Error forwarding grade: Client error '401 Unauthorized' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-02-08 13:13:37,688 - basicLogger - ERROR - Error forwarding grade: Client error '401 Unauthorized' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-02-08 13:13:38,207 - basicLogger - ERROR - Error forwarding grade: Client error '401 Unauthorized' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2025-02-08 13:14:51,453 - basicLogger - INFO - Grade received on 2025-02-08T21:14:51.453482+00:00
+2025-02-08 13:14:53,556 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:15:41,134 - basicLogger - INFO - Grade received on 2025-02-08T21:15:41.134027+00:00
+2025-02-08 13:15:43,255 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:17:11,866 - basicLogger - INFO - Grade received on 2025-02-08T21:17:11.866305+00:00
+2025-02-08 13:17:14,052 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:18:11,861 - basicLogger - INFO - Grade received on 2025-02-08T21:18:11.861778+00:00
+2025-02-08 13:18:13,996 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:19:48,099 - basicLogger - INFO - Grade received on 2025-02-08T21:19:48.099850+00:00
+2025-02-08 13:19:50,217 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:21:59,974 - basicLogger - INFO - Grade received on 2025-02-08T21:21:59.974591+00:00
+2025-02-08 13:22:02,105 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:23:04,533 - basicLogger - INFO - Grade received on 2025-02-08T21:23:04.533023+00:00
+2025-02-08 13:23:06,721 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:23:15,237 - basicLogger - INFO - Grade received on 2025-02-08T21:23:15.237381+00:00
+2025-02-08 13:23:17,296 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:24:07,175 - basicLogger - INFO - Grade received on 2025-02-08T21:24:07.175701+00:00
+2025-02-08 13:24:09,410 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:24:15,858 - basicLogger - INFO - Grade received on 2025-02-08T21:24:15.858425+00:00
+2025-02-08 13:24:17,965 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:24:51,196 - basicLogger - INFO - Grade received on 2025-02-08T21:24:51.196063+00:00
+2025-02-08 13:24:53,341 - basicLogger - ERROR - Error forwarding grade: Server error '500 Internal Server Error' for url 'http://localhost:5020/submit_grade'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+2025-02-08 13:28:00,272 - basicLogger - INFO - Grade received on 2025-02-08T21:28:00.272485+00:00
+2025-02-08 13:28:02,446 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:30:03,613 - basicLogger - INFO - Grade received on 2025-02-08T21:30:03.613648+00:00
+2025-02-08 13:30:05,766 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}
+2025-02-08 13:31:01,113 - basicLogger - INFO - Grade received on 2025-02-08T21:31:01.113081+00:00
+2025-02-08 13:31:03,347 - basicLogger - INFO - Sending request to http://localhost:5020/submit_grade with headers: {'Content-Type': 'application/json'}

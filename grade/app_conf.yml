@@ -1,0 +1,4 @@
+version: 1
+submit_grade:
+  url: http://storage:5020/submit_grade
+  # url: http://localhost:5020/submit_grade

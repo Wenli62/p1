@@ -4,3 +4,4 @@ PyYAML
 SQLAlchemy
 mysqlclient
 gunicorn
+jwt

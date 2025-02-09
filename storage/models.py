@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Numeric, String, DateTime, func
+from sqlalchemy import Integer, String, DateTime, func
 from sqlalchemy.orm import DeclarativeBase, mapped_column
 from datetime import datetime, timezone
 
@@ -6,19 +6,22 @@ from datetime import datetime, timezone
 class Base(DeclarativeBase):
     pass
 
-class voteReport(Base):
+class gradeReport(Base):
     # SQLALchemy column definitions
-    __tablename__ = 'vote_report'
+    __tablename__ = 'grade_report'
     id = mapped_column(Integer, primary_key=True)
-    user_input = mapped_column(String(10), nullable=False)
-    vote_time = mapped_column(DateTime, nullable=False)
-    date_created = mapped_column(DateTime, nullable=False, default=func.now())
+    student_id = mapped_column(String(10), nullable=False)
+    subject = mapped_column(String(50), nullable=False)
+    grade = mapped_column(Integer, nullable=False)
+    receive_time = mapped_column(DateTime, nullable=False)
+    date_recorded = mapped_column(DateTime, nullable=False, default=func.now())
 
     def to_dict(self):
-        dict = {}
-        dict['id'] = self.id
-        dict['user_input'] = self.user_input
-        dict['vote_time']= float(self.vote_time)
-        dict['date_created']= self.date_created
-
-        return dict
+        return {
+            'id': self.id,
+            'student_id': self.student_id,
+            'subject': self.subject,
+            'grade': self.grade,
+            'receive_time': self.receive_time, 
+            'date_recorded': self.date_recorded
+        }

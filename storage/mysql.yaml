@@ -4,7 +4,7 @@ info:
   title: 3495project1
   description: ''
 paths:
-  /vote:
+  /submit_grade:
     # get:
     #   summary: Retrieve vote options
     #   operationId: app.get_vote
@@ -16,37 +16,51 @@ paths:
     #           schema:
     #             type: string
     post:
-      summary: Cast a vote
-      operationId: app.post_vote
+      summary: submit a grade
+      operationId: app.post_grade
+      # security:
+      #   - bearerAuth: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/vote'
+              $ref: '#/components/schemas/submit_grade'
       responses:
         '201':
           description: Created
         '400':
           description: Bad Request
+        # '401':
+        #   description: Unauthorized - Invalid or missing token
 components:
+  # securitySchemes:
+  #     bearerAuth:
+  #       type: http
+  #       scheme: bearer
+  #       bearerFormat: JWT
   schemas:
-    vote:
+    submit_grade:
       type: object
       required:
-        - id
-        - user_input
-        - vote_time
+        - student_id
+        - subject
+        - grade
+        - receive_time
       properties:
-        id:
+        student_id:
           type: string
-          example: '123'
-        user_input:
+          example: '1001'
+        subject:
           type: string
-          enum:
-            - 'Cats'
-            - 'Dogs'
-          example: 'Cats'
-        vote_time:
+          example: 'Mathematics'
+        grade:
+          type: integer
+          example: 85
+        receive_time:
+          type: string
+          format: date-time
+          example: '2025-01-08T09:12:33.001Z'
+        date_recorded:
           type: string
           format: date-time
           example: '2025-01-08T09:12:33.001Z'

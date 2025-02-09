@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/storage
 
 # Expose port
-EXPOSE 5010
+EXPOSE 5020
 
 # Command to run the app
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5010", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:5020", "--log-file", "-", "--access-logfile", "-", "--workers", "4", "--keep-alive", "0"]
