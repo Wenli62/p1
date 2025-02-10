@@ -22,6 +22,6 @@ class gradeReport(Base):
             'student_id': self.student_id,
             'subject': self.subject,
             'grade': self.grade,
-            'receive_time': self.receive_time, 
+            'receive_time': self.receive_time,
             'date_recorded': self.date_recorded
         }

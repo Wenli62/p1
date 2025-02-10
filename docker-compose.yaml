@@ -21,17 +21,11 @@ services:
       - back-tier
     depends_on:
       - mysql_db
-
-
   mysql_db:
     image: mysql
     # container_name: mysql_db
-    # Health check for mysql database, whether mysqladmin is pingable and whether root can login.
-    healthcheck:
-      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
-      timeout: 10s
-      retries: 1
     environment:
+      MYSQL_ROOT_USERNAME: root
       MYSQL_ROOT_PASSWORD: zxcvbnm
       MYSQL_DATABASE: db_grade
     ports:
@@ -46,43 +40,51 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-
-
-  mongo_db:
-    image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: zxcvbnm
-      MONGO_INITDB_DATABASE: db_stats
+  processing:
+    build: ./processing
     ports:
-      - 27011:27017
-    volumes:
-      - mongo_data:/data/db
-      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - "3000:3000"
     networks:
       - back-tier
-
-  storage:
-    build: ./storage
     depends_on:
-      mysql_db:
-        condition: service_healthy 
-    command: sh -c "python db_manage.py drop && exec python app.py"
-      mysql_db:
-        condition: service_healthy
-    # command: sh -c "wait-for-it mysql_db:3306 -- python db_manage.py drop && python app.py"
-    # command: python app.py
-    command: sh -c 'python db_manage.py drop && python app.py'
-    environment:
-      MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_grade
-    ports:
-      - "5020:5020"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - back-tier
-
+        mysql_db:
+          condition: service_healthy
+        mongo_db:
+          condition: service_healthy
+  mongo_db:
+      image: mongo
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: zxcvbnm
+        MONGO_INITDB_DATABASE: db_stats
+      ports:
+        - 27011:27017
+      volumes:
+        - mongo_data:/data/db
+        - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      networks:
+        - back-tier
+      healthcheck:
+        test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+        interval: 15s
+        timeout: 5s
+        retries: 3
+        start_period: 10s
+  storage:
+      build: ./storage
+      depends_on:
+        mysql_db:
+          condition: service_healthy
+      command: sh -c "python db_manage.py drop && exec python app.py"
+      environment:
+        MYSQL_ROOT_PASSWORD: zxcvbnm
+        MYSQL_DATABASE: db_grade
+      ports:
+        - "5020:5020"
+      volumes:
+        - mysql_data:/var/lib/mysql
+      networks:
+        - back-tier
 
 networks:
   front-tier:

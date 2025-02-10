@@ -1,13 +1,13 @@
 const mysql = require('mysql2/promise');
-const mongoose = require('mongoose')
+const { MongoClient } = require("mongodb");
 
 // Establish connection to mysql database
 const sqlConnection = mysql.createPool({
-    host: 'localhost',
+    host: 'mysql_db',
     user: 'root',
     password: 'zxcvbnm',
-    database: 'db_vote',
-    port: 3311,
+    database: 'db_grade',
+    port: 3306,
     waitForConnections: true,
     connectionLimit: 10,
     maxIdle: 10,
@@ -16,17 +16,14 @@ const sqlConnection = mysql.createPool({
 });
 
 // Establish connection to mongodb database
-
-mongoose.set("strictQuery", false);
-
 const username = "root"
 const password = "zxcvbnm"
-const host = "localhost"
-const port = 27011
-const database = "db_stats"
+const host = "mongo_db"
+const port = 27017
 
-export const mongoConnection = async () => {
-    await mongoose.connect(`mongodb://${username}:${password}@${host}:${port}}/${database}`)
-};
+const mongoURI = `mongodb://${username}:${password}@${host}:${port}`;
 
-exports.connection = sqlConnection;
+const mongoClient = new MongoClient(mongoURI);
+
+exports.sqlConnection = sqlConnection;
+exports.client = mongoClient;
