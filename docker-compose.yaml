@@ -25,9 +25,9 @@ services:
     image: mysql
     # container_name: mysql_db
     environment:
-      MYSQL_ROOT_USERNAME: root
-      MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_grade
+      MYSQL_ROOT_USERNAME: ${MYSQL_ROOT_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - 3311:3306
     volumes:
@@ -54,9 +54,9 @@ services:
   mongo_db:
       image: mongo
       environment:
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: zxcvbnm
-        MONGO_INITDB_DATABASE: db_stats
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+        MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
       ports:
         - 27011:27017
       volumes:
@@ -77,8 +77,8 @@ services:
           condition: service_healthy
       command: sh -c "python db_manage.py drop && exec python app.py"
       environment:
-        MYSQL_ROOT_PASSWORD: zxcvbnm
-        MYSQL_DATABASE: db_grade
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
       ports:
         - "5020:5020"
       volumes:
