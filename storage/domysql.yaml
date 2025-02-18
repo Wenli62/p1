@@ -5,4 +5,4 @@ services:
       MYSQL_ROOT_PASSWORD: zxcvbnm
       MYSQL_DATABASE: db_grade
     ports:
-      - 3311:3306
+      - 3315:3306

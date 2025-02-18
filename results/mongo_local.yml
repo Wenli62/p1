@@ -1,0 +1,20 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo_db_local
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: zxcvbnm
+      MONGO_INITDB_DATABASE: db_stats
+    networks:
+      - mongo_network
+
+volumes:
+  mongo-data:
+
+networks:
+  mongo_network:  

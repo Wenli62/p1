@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -84,4 +91,37 @@ select, input {
 #content-container-center button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
+}
+
+/* Header Container */
+.header-container {
+  display: flex;
+  justify-content: center;  /* Centers the header content */
+  align-items: center;
+  position: relative;
+  padding: 10px;
+}
+
+/* Back Button (Aligned to the Left) */
+.back-button {
+  position: absolute;
+  left: 10px;  /* Moves the button to the left */
+}
+
+.back-button a {
+  text-decoration: none;
+}
+
+.back-button button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button button:hover {
+  background-color: #45a049;
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 8px 12px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>Welcome to the Dashboard, <span id="username">User</span> </h2>
+    <button onclick="navigateToSubmitGrade()">Submit Grade</button>
+    <button onclick="navigateToResults()">View Results</button>
+
+    <script>
+        function checkToken() {
+            const token = localStorage.getItem("access_token");
+            if (!token) {
+                alert("You must log in first!");
+                window.location.href = "/"; // Redirect to login page if no token
+            }
+            return token;
+        }
+
+        function parseJWT(token) {
+            try {
+                return JSON.parse(atob(token.split('.')[1])); // Decode the JWT payload
+            } catch (e) {
+                console.error("Error parsing JWT", e);
+                return null;
+            }
+        }
+
+        function displayUsername() {
+            const token = checkToken();
+            const payload = parseJWT(token);
+            if (payload && payload.username) {
+                document.getElementById("username").textContent = payload.username;
+            } else {
+                document.getElementById("username").textContent = "User";
+            }
+        }
+
+        function navigateToSubmitGrade() {
+            const token = checkToken()
+            window.location.href = `http://localhost:5010/submit_grade?token=${token}`;
+        }
+
+        function navigateToResults() {
+            const token = checkToken();
+            window.location.href = `http://localhost:5030/results?token=${token}`;
+        }
+        displayUsername();
+    </script>
+
+</body>
+</html>

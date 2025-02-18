@@ -48,8 +48,8 @@
     
             const responseData = await response.json();
             if (response.ok) {
-                window.location.href = `http://localhost:5010/submit_grade?token=${responseData.access_token}`;
-
+                token = window.localStorage.setItem("access_token", responseData.access_token);
+                window.location.href = `/dashboard?token=${responseData.access_token}`;
             } else {
                 alert("Login failed: " + responseData.detail);
             }

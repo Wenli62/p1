@@ -5,6 +5,6 @@ datastore:
   # for container
   hostname: mysql_db
   # for local
-  # hostname: localhost
+  #hostname: localhost
   port: 3306
   db: db_grade

@@ -9,6 +9,27 @@
     <link rel='stylesheet' href="{{ url_for('static', filename='stylesheets/style.css') }}" />
   </head>
   <body>
+    
+    <script>
+      function navigateBack() {
+        const token = "{{ token }}";
+        if (token) {
+          window.location.href = `http://localhost:5000/dashboard?token=${token}`;
+        } else {
+
+            alert("You must be logged in to access the dashboard.");
+            window.location.href = "http://localhost:5000";
+        }
+      }
+    </script>
+    
+    <header class="header-container">
+      <h1>Grade Submission</h1>
+      <div class="back-button">
+          <button type="button" onclick="navigateBack()">Return to Dashboard</button>
+      </div>
+    </header>
+
     <div id="content-container">
       <div id="content-container-center">
         <h3>Submit Your Grade</h3>

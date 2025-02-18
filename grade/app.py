@@ -5,7 +5,6 @@ import yaml
 from datetime import datetime, timezone
 import jwt
 
-# Load configuration safely
 def load_yaml(file, default={}):
     try:
         with open(file, 'r') as f:
@@ -16,20 +15,20 @@ def load_yaml(file, default={}):
 app_config = load_yaml('app_conf.yml')
 log_config = load_yaml('log_conf.yml')
 
-# Configure logging
 if log_config:
     logging.config.dictConfig(log_config)
 logger = logging.getLogger('basicLogger')
 
-# Flask app setup
+
 app = Flask(__name__)
 
-SECRET_KEY = "3495project1"  # Secret key to validate JWT tokens
+SECRET_KEY = "3495project1"
 
-# Function to decode and validate the JWT token
+
 def validate_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        logger.info(payload)
         return payload
     except jwt.ExpiredSignatureError:
         logger.error("Token has expired")
@@ -40,18 +39,19 @@ def validate_token(token):
 
 @app.route("/submit_grade", methods=["GET", "POST"])
 def submit_grade():
+    
     if request.method == "GET":
-        return render_template('index.html')
-    
-    # # Check if token is provided
-    # token = request.args.get("token")
-    # if token is None:
-    #     return jsonify({"message": "Missing token"}), 401
-    
-    # # Validate the token
-    # token_data = validate_token(token)
-    # if token_data is None:
-    #     return jsonify({"message": "Invalid or expired token"}), 401
+        token = request.args.get("token")
+        if not token:
+            return "Missing token", 400 
+        try:
+            decoded_token = validate_token(token)
+            return render_template('index.html', token=token)
+            
+        except jwt.ExpiredSignatureError:
+            return "Token expired", 401
+        except jwt.InvalidTokenError:
+            return "Invalid token", 401
 
     data = request.get_json()
     required_fields = ['student_id', 'subject', 'grade']

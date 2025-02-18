@@ -4,4 +4,4 @@ connexion[uvicorn]
 httpx
 PyYAML
 gunicorn
-jwt
+pyjwt
