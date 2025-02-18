@@ -116,7 +116,7 @@ const analyze = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+};  
 
 const port = 3000;
 app.listen(port, () => {

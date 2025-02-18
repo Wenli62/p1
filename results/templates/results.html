@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <script>
+        function navigateBack() {
+            const token = "{{ token }}";
+            
+            if (token) {
+                window.location.href = `http://localhost:5000/dashboard?token=${token}`;
+            } else {
+                alert("You must be logged in to access the dashboard.");
+                window.location.href = "http://localhost:5000";
+            }
+        }
+    </script>
+
+    <header class="header-container">
+        <h1>Analytics Results</h1>
+        <div class="back-button">
+            <button type="button" onclick="navigateBack()">Return to Dashboard</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="stats-section">
+            <h2>Overall Stats</h2>
+            <ul>
+                <li><strong>Math Average:</strong> {{ analytics.ov_math_avg }}</li>
+                <li><strong>Physics Average:</strong> {{ analytics.ov_physics_avg }}</li>
+                <li><strong>Chemistry Average:</strong> {{ analytics.ov_chem_avg }}</li>
+                <li><strong>Biology Average:</strong> {{ analytics.ov_bio_avg }}</li>
+                <li><strong>History Average:</strong> {{ analytics.ov_his_avg }}</li>
+                <li><strong>Geography Average:</strong> {{ analytics.ov_geo_avg }}</li>
+                <li><strong>English Average:</strong> {{ analytics.ov_eng_avg }}</li>
+                <li><strong>Computer Science Average:</strong> {{ analytics.ov_cs_avg }}</li>
+                <li><strong>Total Grades:</strong> {{ analytics.total_grades }}</li>
+            </ul>
+        </div>
+
+        <!-- <div class="student-section">
+            <h2>Select a Student to View Their Grades</h2>
+            <form action="http://localhost:5030/results" method="get">
+                <select name="student_id" id="studentSelect" onchange="this.form.submit()">
+                    <option value="">Select a Student</option>
+                    {% for student in students %}
+                        <option value="{{ student.student_id }}">{{ student.student_id }}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="token" value="{{ token }}">
+            </form>
+
+            {% if student %}
+                <div class="grades-list">
+                    <h2>Student: {{ student.student_id }}</h2>
+                    
+                    <ul>
+                        <li><strong>Math Average:</strong> {{ student.math_avg }}</li>
+                        <li><strong>Physics Average:</strong> {{ student.physics_avg }}</li>
+                        <li><strong>Chemistry Average:</strong> {{ student.chem_avg }}</li>
+                        <li><strong>Biology Average:</strong> {{ student.bio_avg }}</li>
+                        <li><strong>History Average:</strong> {{ student.his_avg }}</li>
+                        <li><strong>Geography Average:</strong> {{ student.geo_avg }}</li>
+                        <li><strong>English Average:</strong> {{ student.eng_avg }}</li>
+                        <li><strong>Computer Science Average:</strong> {{ student.cs_avg }}</li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div> 
+        -->
+        
+    </div>
+
+</body>
+</html>

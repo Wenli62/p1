@@ -86,6 +86,20 @@ services:
       networks:
         - back-tier
 
+  results:
+    build: ./results
+    depends_on:
+      mongo_db:
+        condition: service_healthy
+    command: python app.py
+    ports:
+      - "5030:5030"
+    networks:
+      - front-tier
+      - back-tier
+    
+
+
 networks:
   front-tier:
   back-tier:

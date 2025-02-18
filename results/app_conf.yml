@@ -1,0 +1,7 @@
+version: 1
+mongodb_data: 
+  user: root
+  password: zxcvbnm
+  hostname: mongo_db
+  port: 27017
+  db: db_stats

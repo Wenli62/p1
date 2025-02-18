@@ -1,5 +1,6 @@
 Flask
+pymongo
 gunicorn
-pydantic
 jinja2
+PyYAML
 pyjwt
