@@ -1,13 +1,10 @@
 from sqlalchemy import Integer, String, DateTime, func
 from sqlalchemy.orm import DeclarativeBase, mapped_column
-from datetime import datetime, timezone
-
 
 class Base(DeclarativeBase):
     pass
 
 class gradeReport(Base):
-    # SQLALchemy column definitions
     __tablename__ = 'grade_report'
     id = mapped_column(Integer, primary_key=True)
     student_id = mapped_column(String(10), nullable=False)

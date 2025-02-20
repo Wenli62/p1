@@ -1,0 +1,4 @@
+version: 1
+secret_key: "3495project1"
+users_db:
+  admin: "3495admin"

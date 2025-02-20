@@ -5,3 +5,5 @@ mongodb_data:
   hostname: mongo_db
   port: 27017
   db: db_stats
+
+secret_key: "3495project1"

@@ -5,21 +5,9 @@ info:
   description: ''
 paths:
   /submit_grade:
-    # get:
-    #   summary: Retrieve vote options
-    #   operationId: app.get_vote
-    #   responses:
-    #     200:
-    #       description: OK
-    #       content:
-    #         text/html:
-    #           schema:
-    #             type: string
     post:
       summary: submit a grade
       operationId: app.post_grade
-      # security:
-      #   - bearerAuth: []
       requestBody:
         content:
           application/json:
@@ -30,14 +18,8 @@ paths:
           description: Created
         '400':
           description: Bad Request
-        # '401':
-        #   description: Unauthorized - Invalid or missing token
+
 components:
-  # securitySchemes:
-  #     bearerAuth:
-  #       type: http
-  #       scheme: bearer
-  #       bearerFormat: JWT
   schemas:
     submit_grade:
       type: object

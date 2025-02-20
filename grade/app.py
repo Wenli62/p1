@@ -13,6 +13,8 @@ def load_yaml(file, default={}):
         return default
 
 app_config = load_yaml('app_conf.yml')
+SECRET_KEY = app_config["secret_key"]
+
 log_config = load_yaml('log_conf.yml')
 
 if log_config:
@@ -21,9 +23,6 @@ logger = logging.getLogger('basicLogger')
 
 
 app = Flask(__name__)
-
-SECRET_KEY = "3495project1"
-
 
 def validate_token(token):
     try:

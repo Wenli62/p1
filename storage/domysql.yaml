@@ -1,8 +1,0 @@
-services:
-  db:
-    image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: zxcvbnm
-      MYSQL_DATABASE: db_grade
-    ports:
-      - 3315:3306

@@ -1,12 +1,22 @@
 from flask import Flask, request, render_template, jsonify
 import jwt
 from datetime import datetime, timedelta
+import yaml
 
-SECRET_KEY = "3495project1"
+def load_yaml(file, default={}):
+    try:
+        with open(file, 'r') as f:
+            return yaml.safe_load(f)
+    except FileNotFoundError:
+        return default
+
+app_config = load_yaml('app_conf.yml')
+SECRET_KEY = app_config["secret_key"]
+
 
 app = Flask(__name__)
 
-users_db = {"asdf": "123"}
+users = app_config["users_db"]
 
 
 def create_jwt(username: str):
@@ -51,7 +61,7 @@ def login():
     username = data.get("username")
     password = data.get("password")
 
-    if users_db.get(username) == password:
+    if users.get(username) == password:
         token = create_jwt(username)
         return jsonify({"access_token": token})
     else:

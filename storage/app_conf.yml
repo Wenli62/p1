@@ -2,9 +2,8 @@ version: 1
 datastore:
   user: root
   password: zxcvbnm
-  # for container
   hostname: mysql_db
-  # for local
-  #hostname: localhost
   port: 3306
   db: db_grade
+
+secret_key: "3495project1"

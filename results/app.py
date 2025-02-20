@@ -11,9 +11,10 @@ def load_yaml(file, default={}):
         return default
 
 app = Flask(__name__)
-SECRET_KEY = "3495project1"
+
 
 app_config = load_yaml("app_conf.yml")
+SECRET_KEY = app_config["secret_key"]
 
 mongo_cfg = app_config["mongodb_data"]
 mongo_uri = f"mongodb://{mongo_cfg['user']}:{mongo_cfg['password']}@{mongo_cfg['hostname']}:{mongo_cfg['port']}/"

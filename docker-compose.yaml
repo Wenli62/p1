@@ -1,10 +1,8 @@
-#version: "3"
+
 services:
   auth:
     build: ./auth
     command: python app.py
-    # volumes:
-    #  - grade_data:/app
     ports:
       - "5000:5000"
     networks:
@@ -23,7 +21,6 @@ services:
       - mysql_db
   mysql_db:
     image: mysql
-    # container_name: mysql_db
     environment:
       MYSQL_ROOT_USERNAME: ${MYSQL_ROOT_USERNAME}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -98,8 +95,6 @@ services:
       - front-tier
       - back-tier
     
-
-
 networks:
   front-tier:
   back-tier:
